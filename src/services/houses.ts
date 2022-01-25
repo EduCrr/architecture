@@ -26,3 +26,26 @@ export const getAll = async () => {
     });
   return list;
 };
+
+export const getSingle = async (id: any) => {
+  let set: any = {};
+  await firebase
+    .firestore()
+    .collection("house")
+    .doc(id)
+    .get()
+    .then((doc: any) => {
+      set.id = doc.id;
+      set.name = doc.data().name;
+      set.color = doc.data().color;
+      set.company = doc.data().company;
+      set.description = doc.data().description;
+      set.images = doc.data().images;
+      set.price = doc.data().price;
+      set.category = doc.data().category;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  return set;
+};

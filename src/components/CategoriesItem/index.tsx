@@ -11,7 +11,7 @@ export const CategoriesItem = ({ data }: Props) => {
         <Link to={`/interior/${data.id}`}>
           <img src={data.images} />
         </Link>
-
+        <span>{data.company}</span>
         <h3>{data.name}</h3>
       </div>
     </C.Container>
