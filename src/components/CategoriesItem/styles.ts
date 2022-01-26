@@ -11,8 +11,16 @@ export const Container = styled.div`
       height: 400px;
       margin-bottom: 20px;
       width: 100%;
-      box-shadow: rgb(40 41 44) 1px 1px 30px;
       object-fit: cover;
+      border-left: 10px solid transparent;
     }
+  }
+  .middle {
+    text-align: left;
+    top: 70%;
+    left: 25%;
+  }
+  a {
+    font-size: 30px;
   }
 `;

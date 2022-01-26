@@ -13,6 +13,9 @@ export const Header = () => {
             <li>
               <Link to="/categories">Categories</Link>
             </li>
+            <li>
+              <Link to="/cart">Cart</Link>
+            </li>
           </ul>
         </nav>
       </C.Container>

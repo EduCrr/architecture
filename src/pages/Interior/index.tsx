@@ -3,27 +3,34 @@ import { useParams } from "react-router-dom";
 import { getSingle } from "../../services/houses";
 import * as C from "./styles";
 import Slider from "react-slick";
-
+import { useDispatch } from "react-redux";
+import { useSelectorApp } from "../../redux/hooks/userSelectorApp";
+import { addItemToCart } from "../../redux/reducers/cartReducer";
 export const Interiro = () => {
+  const { id } = useParams();
+  const [house, setHouse] = useState<any>({});
+  const cart = useSelectorApp((state) => state.cart);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const loadHouse = async (id: any) => {
+      setHouse(await getSingle(id));
+    };
+    loadHouse(id);
+  }, [id]);
+
   const settings = {
-    dots: false,
-    arrows: false,
     infinite: true,
+    arrows: false,
+    dots: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
   };
 
-  const { id } = useParams();
-  const [house, setHouse] = useState<any>({});
-
-  useEffect(() => {
-    const loadHouse = async (id: any) => {
-      setHouse(await getSingle(id));
-      console.log(await getSingle(id));
-    };
-    loadHouse(id);
-  }, [id]);
+  const handleAddCart = (data: any) => {
+    dispatch(addItemToCart(data));
+    console.log(cart);
+  };
 
   return (
     <C.Container>
@@ -55,7 +62,7 @@ export const Interiro = () => {
           <h3> {house.description}</h3>
         </div>
         <div className="item">
-          <button>Add to cart</button>
+          <button onClick={() => handleAddCart(house)}>Add to cart</button>
         </div>
       </div>
       <div className="right-side">

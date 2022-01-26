@@ -3,7 +3,7 @@ import * as C from "./styles";
 export const About = () => {
   return (
     <C.Container>
-      <div className="text">
+      <div className="about">
         <h1>About Us</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

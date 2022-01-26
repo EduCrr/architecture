@@ -4,9 +4,7 @@ export const Container = styled.div`
   max-width: 1200px;
   margin: 4rem auto;
   display: flex;
-  align-items: top;
   justify-content: space-between;
-  height: 90vh;
   .left-side {
     width: 400px;
     display: flex;
@@ -35,13 +33,24 @@ export const Container = styled.div`
   }
   .right-side {
     flex: 1;
-    height: 90vh;
     width: 100%;
     overflow-x: hidden;
+    height: 550px;
+
     img {
       height: 500px;
       width: 100%;
       object-fit: cover;
+    }
+    .slick-dots li button:before {
+      margin-top: -30px !important;
+      font-size: 20px;
+      color: #dc9763;
+      opacity: 1;
+    }
+    .slick-dots {
+      width: 100% !important;
+      display: flex;
     }
   }
 `;

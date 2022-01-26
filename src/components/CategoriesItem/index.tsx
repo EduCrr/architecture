@@ -7,12 +7,17 @@ type Props = {
 export const CategoriesItem = ({ data }: Props) => {
   return (
     <C.Container>
-      <div className="items">
-        <Link to={`/interior/${data.id}`}>
-          <img src={data.images} />
-        </Link>
-        <span>{data.company}</span>
-        <h3>{data.name}</h3>
+      <div className="imgHover">
+        <div className="items">
+          <Link to={`/interior/${data.id}`}>
+            <img src={data.images} />
+          </Link>
+        </div>
+        <div className="middle">
+          <span>{data.company}</span>
+          <br />
+          <Link to="/houses">{data.name}</Link>
+        </div>
       </div>
     </C.Container>
   );
