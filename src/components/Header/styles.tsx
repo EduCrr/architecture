@@ -21,5 +21,9 @@ export const Container = styled.div`
   ul li {
     margin: 0px 0px 0px 10px;
     transition: all ease 0.4s;
+
+    svg {
+      font-size: 20px;
+    }
   }
 `;

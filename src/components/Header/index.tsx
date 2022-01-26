@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import * as C from "./styles";
+import { FaOpencart } from "react-icons/fa";
+
 export const Header = () => {
   return (
     <>
@@ -14,7 +16,9 @@ export const Header = () => {
               <Link to="/categories">Categories</Link>
             </li>
             <li>
-              <Link to="/cart">Cart</Link>
+              <Link to="/cart">
+                <FaOpencart />
+              </Link>
             </li>
           </ul>
         </nav>
