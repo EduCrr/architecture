@@ -63,7 +63,8 @@ button {
   cursor: pointer;
   margin-top: 20px;
 }
-select {
+select,
+input {
   background-color: transparent;
   padding: 20px;
   color: #dc9763;

@@ -4,9 +4,11 @@ import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import thunk from "redux-thunk";
 import cartReducer from "./reducers/cartReducer";
+import userReducer from "./reducers/userReducer";
 
 const reducers = combineReducers({
   cart: cartReducer,
+  user: userReducer,
 });
 
 const persistConfig = {

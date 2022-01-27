@@ -12,7 +12,7 @@ export const Container = styled.div`
   .cartInfo {
     display: flex;
     flex-direction: column;
-    margin-bottom: 30px;
+    margin-bottom: 45px;
     img {
       height: 250px;
       width: inherit;
@@ -28,13 +28,20 @@ export const Container = styled.div`
   .checkCart {
     position: fixed;
     right: 80px;
-    width: 250px;
+    width: 350px;
     background-color: #dc9763;
-    height: 150px;
+    height: auto;
     color: white;
     display: flex;
-    padding: 0px 20px;
-    justify-content: space-between;
-    align-items: center;
+    padding: 20px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    div {
+      width: 300px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 `;

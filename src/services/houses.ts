@@ -1,6 +1,5 @@
 import { houseTypes } from "../types/houseType";
 import firebase from "../firebaseConnection";
-
 export const getAll = async () => {
   let list: houseTypes[] = [];
   await firebase
@@ -48,4 +47,77 @@ export const getSingle = async (id: any) => {
       console.log(error);
     });
   return set;
+};
+
+export const sendLogin = async (
+  email: string,
+  password: string,
+  setUserName: any,
+  setUserEmail: any,
+  setUserId: any
+) => {
+  await firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then(async (value) => {
+      let uid = value.user?.uid;
+      const userProfile = await firebase
+        .firestore()
+        .collection("users")
+        .doc(uid)
+        .get();
+
+      let data = {
+        uid: uid,
+        email: value.user?.email,
+        name: userProfile.data()?.name,
+      };
+      setUserName(data.name);
+      setUserEmail(data.email);
+      setUserId(data.uid);
+    })
+    .catch((error) => {
+      console.log(error);
+      alert("email/senha incorretos!");
+    });
+};
+
+export const sendNewAccount = async (
+  email: string,
+  password: string,
+  name: string,
+  setUserName: any,
+  setUserEmail: any,
+  setUserId: any
+) => {
+  await firebase
+    .auth()
+    .createUserWithEmailAndPassword(email, password)
+    //banco auth
+    .then(async (value) => {
+      let uid = value.user?.uid;
+      //banco user
+      await firebase
+        .firestore()
+        .collection("users")
+        .doc(uid)
+        .set({
+          name,
+          email,
+          uid,
+        })
+        .then(() => {
+          let data = {
+            uid,
+            name,
+            email: value.user?.email,
+          };
+          setUserName(data.name);
+          setUserEmail(data.email);
+          setUserId(data.uid);
+        });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };

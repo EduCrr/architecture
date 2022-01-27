@@ -6,6 +6,7 @@ import * as C from "./styles";
 export const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelectorApp((state) => state.cart);
+  const user = useSelectorApp((state) => state.user);
 
   const handleDelete = (id: string) => {
     dispatch(removeItemFromCart(id));
@@ -43,8 +44,16 @@ export const Cart = () => {
             ))}
           </div>
           <div className="checkCart">
-            <h2>Total Cost:</h2>
-            <strong>{totalMascara}</strong>
+            <div>
+              <h2>Total Cost:</h2>
+              <strong>{totalMascara}</strong>
+            </div>
+            <br />
+            <span>Name</span>
+            <h3>{user.name}</h3>
+            <br />
+            <span>Email</span>
+            <h3>{user.email}</h3>
           </div>
         </>
       )}
