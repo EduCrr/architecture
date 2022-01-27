@@ -2,17 +2,21 @@ import { useSelectorApp } from "../../redux/hooks/userSelectorApp";
 import { useDispatch } from "react-redux";
 import { removeItemFromCart } from "../../redux/reducers/cartReducer";
 import * as C from "./styles";
+
 export const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelectorApp((state) => state.cart);
+
   const handleDelete = (id: string) => {
     dispatch(removeItemFromCart(id));
   };
+
   const total = cart.reduce((amount, item) => item.price + amount, 0);
   let totalMascara = total.toLocaleString("en-US", {
     style: "currency",
     currency: "USD",
   });
+
   return (
     <C.Container>
       {cart.length == 0 ? (
