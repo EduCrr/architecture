@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { getSingle } from "../../services/houses";
 import * as C from "./styles";
 import Slider from "react-slick";
@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { useSelectorApp } from "../../redux/hooks/userSelectorApp";
 import { addItemToCart } from "../../redux/reducers/cartReducer";
 export const Interiro = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [house, setHouse] = useState<any>({});
   const cart = useSelectorApp((state) => state.cart);
@@ -35,6 +36,23 @@ export const Interiro = () => {
   return (
     <C.Container>
       <div className="left-side">
+        <div
+          style={{
+            display: "inline",
+            marginBottom: "10px",
+          }}
+        >
+          <span
+            style={{
+              cursor: "pointer",
+              color: "#dc9763",
+              display: "inline",
+            }}
+            onClick={() => navigate(-1)}
+          >
+            Go back
+          </span>
+        </div>
         <h2>{house.name}</h2>
         <div className="info">
           <div className="item" style={{ flex: "1" }}>
@@ -55,11 +73,6 @@ export const Interiro = () => {
             <span>Full Price</span>
             <h3> $ {house.price}</h3>
           </div>
-        </div>
-        <div className="item">
-          <span>Description</span>
-          <br />
-          <h3> {house.description}</h3>
         </div>
         <div className="item">
           <button onClick={() => handleAddCart(house)}>Add to cart</button>

@@ -7,6 +7,8 @@ import {
   setNameUsuario,
 } from "../../redux/reducers/userReducer";
 import { useDispatch } from "react-redux";
+import { useSelectorApp } from "../../redux/hooks/userSelectorApp";
+import { Navigate } from "react-router-dom";
 export const Login = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
@@ -16,14 +18,15 @@ export const Login = () => {
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [userId, setUserId] = useState("");
+  const user = useSelectorApp((state) => state.user);
 
   const handleSendForm = async (e: React.FormEvent) => {
     e.preventDefault();
     if (isLogin === "login") {
       await sendLogin(email, password, setUserName, setUserEmail, setUserId);
-      await dispatch(setNameUsuario(userName));
-      await dispatch(setEmailUsuario(userEmail));
-      await dispatch(setUid(userId));
+      dispatch(setNameUsuario(userName));
+      dispatch(setEmailUsuario(userEmail));
+      dispatch(setUid(userId));
     } else if (isLogin === "cadastro") {
       await sendNewAccount(
         email,
@@ -33,16 +36,18 @@ export const Login = () => {
         setUserEmail,
         setUserId
       );
-      await dispatch(setNameUsuario(userName));
-      await dispatch(setEmailUsuario(userEmail));
-      await dispatch(setUid(userId));
+      dispatch(setNameUsuario(userName));
+      dispatch(setEmailUsuario(userEmail));
+      dispatch(setUid(userId));
     }
   };
 
   const handleIsLogin = (e: ChangeEvent<HTMLSelectElement>) => {
     setIsLogin(e.target.value);
   };
-
+  if (user.uid !== "") {
+    return <Navigate to="/" />;
+  }
   return (
     <C.Container>
       <div className="left-side">

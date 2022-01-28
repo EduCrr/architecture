@@ -4,8 +4,11 @@ import { FaOpencart, FaRegUser, FaArrowRight } from "react-icons/fa";
 import { useSelectorApp } from "../../redux/hooks/userSelectorApp";
 import { useDispatch } from "react-redux";
 import { setLogOut } from "../../redux/reducers/userReducer";
+import { useLocation } from "react-router-dom";
 export const Header = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
+  const splitLocation = location.pathname.split("/");
   const user = useSelectorApp((state) => state.user);
   const handleLogout = () => {
     dispatch(setLogOut());
@@ -17,25 +20,44 @@ export const Header = () => {
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link className={splitLocation[1] === "" ? "active" : ""} to="/">
+                Home
+              </Link>
             </li>
             <li>
-              <Link to="/categories">Categories</Link>
+              <Link
+                className={splitLocation[1] === "categories" ? "active" : ""}
+                to="/categories"
+              >
+                Categories
+              </Link>
             </li>
             {user.uid === "" && (
               <li>
-                <Link to="/login">Login</Link>
+                <Link
+                  className={splitLocation[1] === "login" ? "active" : ""}
+                  to="/login"
+                >
+                  Login
+                </Link>
               </li>
             )}
             {user.uid !== "" && (
               <>
                 <li>
                   <Link to="/cart">
-                    <FaOpencart />
+                    <FaOpencart
+                      style={{
+                        color: splitLocation[1] === "cart" ? "#fff" : "#67686a",
+                      }}
+                    />
                   </Link>
                 </li>
                 <li>
-                  <Link to="/">
+                  <Link
+                    to="/"
+                    className={splitLocation[1] === "user" ? "active" : ""}
+                  >
                     <FaRegUser />
                   </Link>
                 </li>

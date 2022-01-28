@@ -3,7 +3,12 @@ import * as C from "./styles";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { houseTypes } from "../../types/houseType";
+import { getAll } from "../../services/houses";
+import { Link } from "react-router-dom";
 export const SliderIntro = () => {
+  const [images, setImages] = useState<houseTypes[]>([]);
+  const [loading, setLoading] = useState(false);
   const settings = {
     dots: false,
     infinite: true,
@@ -12,6 +17,15 @@ export const SliderIntro = () => {
     arrows: false,
     slidesToScroll: 3,
   };
+  useEffect(() => {
+    const getAllHouse = async () => {
+      setLoading(true);
+      setImages(await getAll());
+      setLoading(false);
+      console.log(await getAll());
+    };
+    getAllHouse();
+  }, []);
   return (
     <>
       <C.Container>
@@ -21,15 +35,13 @@ export const SliderIntro = () => {
         </div>
         <div className="right-side">
           <Slider {...settings}>
-            <div className="image-slider">
-              <img src="https://images.unsplash.com/photo-1579518919756-df28bdaaeab6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" />
-            </div>
-            <div className="image-slider">
-              <img src="https://images.unsplash.com/photo-1579518919756-df28bdaaeab6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" />
-            </div>
-            <div className="image-slider">
-              <img src="https://images.unsplash.com/photo-1579518919756-df28bdaaeab6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" />
-            </div>
+            {images.map((item, k) => (
+              <div className="image-slider" key={k}>
+                <Link to={`/interior/${item.id}`}>
+                  <img src={item.images} />
+                </Link>
+              </div>
+            ))}
           </Slider>
         </div>
       </C.Container>

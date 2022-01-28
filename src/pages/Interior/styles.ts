@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   max-width: 1200px;
-  margin: 4rem auto;
+  margin: 1rem auto;
   display: flex;
   justify-content: space-between;
   .left-side {
+    height: 85vh;
     width: 400px;
     display: flex;
     flex-direction: column;
@@ -32,13 +33,15 @@ export const Container = styled.div`
     }
   }
   .right-side {
-    flex: 1;
-    width: 100%;
-    overflow-x: hidden;
-    height: 550px;
+    width: 60%;
+    overflow: hidden;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    position: absolute;
 
     img {
-      height: 500px;
+      height: 100vh;
       width: 100%;
       object-fit: cover;
     }

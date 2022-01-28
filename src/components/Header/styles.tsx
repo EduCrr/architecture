@@ -19,11 +19,15 @@ export const Container = styled.div`
     display: flex;
   }
   ul li {
-    margin: 0px 0px 0px 10px;
+    margin: 0px 0px 0px 30px;
     transition: all ease 0.4s;
 
     svg {
       font-size: 20px;
+      color: #67686a;
     }
+  }
+  a.active {
+    color: white;
   }
 `;

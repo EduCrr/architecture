@@ -10,7 +10,7 @@ export const Container = styled.div`
   }
 `;
 export const Gallery = styled.div`
-  margin: 4rem 0px;
+  margin: 5rem 0px;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(4, 1fr);

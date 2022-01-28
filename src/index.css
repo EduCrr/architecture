@@ -25,6 +25,7 @@ a {
 p {
   line-height: 32px;
   margin: 15px 0px;
+  font-size: 15px;
 }
 ul li {
   list-style-type: none;
@@ -36,7 +37,7 @@ h1 {
 html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  scrollbar-color: #1f2024 #1f2024;
+  scrollbar-color: #dc9763 #1f2024;
 }
 
 html::-webkit-scrollbar {
