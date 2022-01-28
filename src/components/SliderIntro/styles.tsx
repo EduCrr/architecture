@@ -3,10 +3,11 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   margin: auto;
+  margin-top: 10px;
   max-width: 1200px;
   align-items: center;
   justify-content: space-between;
-  height: 100vh;
+  height: 90vh;
 
   .left-side {
     max-width: 400px;
@@ -17,7 +18,7 @@ export const Container = styled.div`
   .right-side {
     flex: 1;
     img {
-      height: 500px;
+      height: 530px;
       width: 100%;
       object-fit: cover;
 

@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import { houseTypes } from "../../types/houseType";
 import { getAll } from "../../services/houses";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 export const SliderIntro = () => {
   const [images, setImages] = useState<houseTypes[]>([]);
   const [loading, setLoading] = useState(false);
@@ -28,12 +29,29 @@ export const SliderIntro = () => {
   }, []);
   return (
     <>
+      {loading && (
+        <div className="loading">
+          <img src="" />
+        </div>
+      )}
       <C.Container>
-        <div className="left-side">
+        <motion.div
+          className="left-side"
+          exit={{ opacity: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        >
           <span>02.</span>
           <h1>Dark Interior</h1>
-        </div>
-        <div className="right-side">
+        </motion.div>
+        <motion.div
+          className="right-side"
+          exit={{ opacity: 0, y: "5vh" }}
+          initial={{ opacity: 0, y: "15vh" }}
+          animate={{ opacity: 1, y: "0" }}
+          transition={{ duration: 0.8 }}
+        >
           <Slider {...settings}>
             {images.map((item, k) => (
               <div className="image-slider" key={k}>
@@ -43,7 +61,7 @@ export const SliderIntro = () => {
               </div>
             ))}
           </Slider>
-        </div>
+        </motion.div>
       </C.Container>
     </>
   );

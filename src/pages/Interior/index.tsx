@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import { useDispatch } from "react-redux";
 import { useSelectorApp } from "../../redux/hooks/userSelectorApp";
 import { addItemToCart } from "../../redux/reducers/cartReducer";
+import { motion } from "framer-motion";
 export const Interiro = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -35,7 +36,13 @@ export const Interiro = () => {
 
   return (
     <C.Container>
-      <div className="left-side">
+      <motion.div
+        exit={{ opacity: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        className="left-side"
+      >
         <div
           style={{
             display: "inline",
@@ -77,8 +84,14 @@ export const Interiro = () => {
         <div className="item">
           <button onClick={() => handleAddCart(house)}>Add to cart</button>
         </div>
-      </div>
-      <div className="right-side">
+      </motion.div>
+      <motion.div
+        exit={{ opacity: 0, height: "0vh" }}
+        initial={{ opacity: 0, height: "0vh" }}
+        animate={{ opacity: 1, height: "100vh" }}
+        transition={{ duration: 0.8 }}
+        className="right-side"
+      >
         {house.images && (
           <>
             <Slider {...settings}>
@@ -90,7 +103,7 @@ export const Interiro = () => {
             </Slider>
           </>
         )}
-      </div>
+      </motion.div>
     </C.Container>
   );
 };

@@ -3,6 +3,7 @@ import { houseTypes } from "../../types/houseType";
 import { getAll } from "../../services/houses";
 import { CategoriesItem } from "../../components/CategoriesItem";
 import * as C from "./styles";
+import { motion } from "framer-motion";
 export const Categories = () => {
   const [houses, setHouses] = useState<houseTypes[]>([]);
   const [loading, setLoading] = useState(false);
@@ -29,16 +30,29 @@ export const Categories = () => {
 
   return (
     <C.Container>
-      <select value={showCat} onChange={handleCats}>
-        <option value="">All</option>
-        {cat.map((item, k) => (
-          <option key={k} value={item.slug}>
-            {item.title}
-          </option>
-        ))}
-      </select>
+      <motion.div
+        exit={{ opacity: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        <select value={showCat} onChange={handleCats}>
+          <option value="">All</option>
+          {cat.map((item, k) => (
+            <option key={k} value={item.slug}>
+              {item.title}
+            </option>
+          ))}
+        </select>
+      </motion.div>
 
-      <div className="allHouses">
+      <motion.div
+        exit={{ opacity: 0, y: "10vh" }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, y: "5vh" }}
+        transition={{ duration: 0.8 }}
+        className="allHouses"
+      >
         {showCat === "" && (
           <>
             {houses.map((item, k) => (
@@ -55,7 +69,7 @@ export const Categories = () => {
               ))}
           </>
         )}
-      </div>
+      </motion.div>
     </C.Container>
   );
 };

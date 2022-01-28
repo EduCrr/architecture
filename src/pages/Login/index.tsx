@@ -9,6 +9,7 @@ import {
 import { useDispatch } from "react-redux";
 import { useSelectorApp } from "../../redux/hooks/userSelectorApp";
 import { Navigate } from "react-router-dom";
+import { motion } from "framer-motion";
 export const Login = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
@@ -50,13 +51,25 @@ export const Login = () => {
   }
   return (
     <C.Container>
-      <div className="left-side">
+      <motion.div
+        exit={{ opacity: 0, y: "5vh" }}
+        initial={{ opacity: 0, y: "15vh" }}
+        animate={{ opacity: 1, y: "0" }}
+        transition={{ duration: 0.8 }}
+        className="left-side"
+      >
         <img
           src="https://images.unsplash.com/photo-1547645890-36d42b462191?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
           alt=""
         />
-      </div>
-      <div className="right-side">
+      </motion.div>
+      <motion.div
+        exit={{ opacity: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        className="right-side"
+      >
         <select onChange={handleIsLogin} value={isLogin}>
           <option value="">Select your choice</option>
           <option value="login">Login</option>
@@ -93,7 +106,7 @@ export const Login = () => {
             </form>
           </>
         )}
-      </div>
+      </motion.div>
     </C.Container>
   );
 };

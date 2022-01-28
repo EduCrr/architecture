@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 33%;
-  margin: 4rem auto;
+  margin: 2rem auto;
   .items {
     display: flex;
     flex-direction: column;
