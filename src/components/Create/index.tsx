@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import * as C from "./styles";
+import { motion } from "framer-motion";
 export const Create = () => {
   let navigate = useNavigate();
   const handleCat = () => {
@@ -7,13 +8,25 @@ export const Create = () => {
   };
   return (
     <C.Container>
-      <div className="left-side">
+      <motion.div
+        className="left-side"
+        exit={{ opacity: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+      >
         <img
           src="https://images.unsplash.com/photo-1591931681345-16b532514cde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=386&q=80"
           alt=""
         />
-      </div>
-      <div className="right-side">
+      </motion.div>
+      <motion.div
+        className="right-side"
+        exit={{ opacity: 0, y: "5vh" }}
+        initial={{ opacity: 0, y: "15vh" }}
+        animate={{ opacity: 1, y: "0" }}
+        transition={{ duration: 0.8 }}
+      >
         <h2 style={{ marginBottom: "20px" }}>
           We create a dream beautiful interior
         </h2>
@@ -27,7 +40,7 @@ export const Create = () => {
         <div className="btn">
           <button onClick={handleCat}>More</button>
         </div>
-      </div>
+      </motion.div>
     </C.Container>
   );
 };

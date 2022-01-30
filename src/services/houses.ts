@@ -13,7 +13,6 @@ export const getAll = async () => {
           name: doc.data().name,
           color: doc.data().color,
           company: doc.data().company,
-          description: doc.data().description,
           images: doc.data().images,
           price: doc.data().price,
           category: doc.data().category,
@@ -38,7 +37,6 @@ export const getSingle = async (id: any) => {
       set.name = doc.data().name;
       set.color = doc.data().color;
       set.company = doc.data().company;
-      set.description = doc.data().description;
       set.images = doc.data().images;
       set.price = doc.data().price;
       set.category = doc.data().category;
@@ -119,5 +117,32 @@ export const sendNewAccount = async (
     })
     .catch((error) => {
       console.log(error);
+    });
+};
+
+export const newUserinfo = async (name: string, id: string) => {
+  await firebase
+    .firestore()
+    .collection("users")
+    .doc(id)
+    .update({
+      name: name,
+    })
+    .then(() => {
+      alert("Update sucess!");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+export const newUserPassword = async (password: string) => {
+  await firebase
+    .auth()
+    .currentUser?.updatePassword(password)
+    .then(() => {
+      alert("senha alterada");
+    })
+    .catch((error) => {
+      alert("erro senha");
     });
 };

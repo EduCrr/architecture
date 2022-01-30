@@ -47,9 +47,9 @@ export const Categories = () => {
       </motion.div>
 
       <motion.div
-        exit={{ opacity: 0, y: "10vh" }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, y: "5vh" }}
+        exit={{ opacity: 0, y: "5vh" }}
+        initial={{ opacity: 0, y: "15vh" }}
+        animate={{ opacity: 1, y: "0" }}
         transition={{ duration: 0.8 }}
         className="allHouses"
       >

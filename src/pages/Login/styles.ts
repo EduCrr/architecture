@@ -24,9 +24,7 @@ export const Container = styled.div`
     form {
       display: flex;
       flex-direction: column;
-      input {
-        margin-left: 0px !important;
-      }
+
       button {
         padding: 20px !important;
         margin-top: 2rem;

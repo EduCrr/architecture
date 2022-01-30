@@ -10,13 +10,14 @@ export const Container = styled.div`
   height: 90vh;
 
   .left-side {
-    max-width: 400px;
+    max-width: 300px;
     h1 {
       font-size: 60px;
     }
   }
   .right-side {
     flex: 1;
+    overflow: hidden;
     img {
       height: 530px;
       width: 100%;

@@ -1,6 +1,19 @@
 import { Link } from "react-router-dom";
 import * as C from "./styles";
+import { getAll } from "../../services/houses";
+import { useEffect, useState } from "react";
+import { houseTypes } from "../../types/houseType";
+import { motion } from "framer-motion";
 export const About = () => {
+  const [images, setImages] = useState<houseTypes[]>([]);
+
+  useEffect(() => {
+    const getImages = async () => {
+      setImages(await getAll());
+    };
+    getImages();
+  }, []);
+
   return (
     <C.Container>
       <div className="about">
@@ -13,57 +26,30 @@ export const About = () => {
         </p>
       </div>
       <C.Gallery>
-        <div className="item-0">
-          <div className="imgHover">
-            <img src="https://images.unsplash.com/photo-1579518919756-df28bdaaeab6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" />
+        {images.length > 0 && (
+          <>
+            {images.slice(0, 5).map((item, k) => (
+              <motion.div
+                className={`item-${k}`}
+                key={k}
+                exit={{ opacity: 0 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8 }}
+              >
+                <div className="imgHover">
+                  <img src={item.images} alt={item.name} />
 
-            <div className="middle">
-              <div className="text">
-                <Link to="/houses">Veja mais</Link>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="item-1">
-          <div className="imgHover">
-            <img src="https://images.unsplash.com/photo-1579518919756-df28bdaaeab6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" />
-            <div className="middle">
-              <div className="text">
-                <Link to="/houses">Veja mais</Link>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="item-2">
-          <div className="imgHover">
-            <img src="https://images.unsplash.com/photo-1579518919756-df28bdaaeab6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" />
-            <div className="middle">
-              <div className="text">
-                <Link to="/houses">Veja mais</Link>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="item-3">
-          <div className="imgHover">
-            <img src="https://images.unsplash.com/photo-1579518919756-df28bdaaeab6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" />
-            <div className="middle">
-              <div className="text">
-                <Link to="/houses">Veja mais</Link>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="item-4">
-          <div className="imgHover">
-            <img src="https://images.unsplash.com/photo-1579518919756-df28bdaaeab6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" />
-            <div className="middle">
-              <div className="text">
-                <Link to="/houses">Veja mais</Link>
-              </div>
-            </div>
-          </div>
-        </div>
+                  <div className="middle">
+                    <div className="text">
+                      <Link to={`/interior/${item.id}`}>Veja mais</Link>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </>
+        )}
       </C.Gallery>
     </C.Container>
   );

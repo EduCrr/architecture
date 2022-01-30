@@ -31,7 +31,7 @@ export const Interiro = () => {
 
   const handleAddCart = (data: any) => {
     dispatch(addItemToCart(data));
-    console.log(cart);
+    navigate("/cart");
   };
 
   return (

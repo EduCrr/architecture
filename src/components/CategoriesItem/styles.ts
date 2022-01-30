@@ -1,15 +1,11 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 33%;
-  margin: 2rem auto;
+  margin: 2rem 0px 0px 0px;
+  width: 25%;
   .items {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
     img {
       height: 400px;
-      margin-bottom: 20px;
       width: 100%;
       object-fit: cover;
       border-left: 10px solid transparent;
@@ -17,8 +13,9 @@ export const Container = styled.div`
   }
   .middle {
     text-align: left;
-    top: 70%;
-    left: 25%;
+    top: 80%;
+    left: 60%;
+    width: 100%;
   }
   a {
     font-size: 30px;

@@ -4,8 +4,9 @@ export const Container = styled.div`
   display: flex;
   align-items: top;
   justify-content: space-between;
-  margin: 4rem auto;
+  margin: 2rem auto;
   max-width: 1200px;
+  min-height: 100vh;
   .cart {
     width: 350px;
   }

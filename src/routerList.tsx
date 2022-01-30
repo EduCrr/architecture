@@ -6,6 +6,7 @@ import { Interiro } from "./pages/Interior";
 import { Cart } from "./pages/Cart";
 import { Login } from "./pages/Login";
 import { RequiredAuth } from "./RequiredAuth";
+import { User } from "./pages/User";
 
 export const RoutesList = () => {
   let location = useLocation();
@@ -24,6 +25,14 @@ export const RoutesList = () => {
           }
         />
         <Route path="/login" element={<Login />} />
+        <Route
+          path="/user"
+          element={
+            <RequiredAuth>
+              <User />
+            </RequiredAuth>
+          }
+        />
       </Routes>
     </AnimatePresence>
   );

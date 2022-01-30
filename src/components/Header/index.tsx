@@ -54,11 +54,12 @@ export const Header = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    to="/"
-                    className={splitLocation[1] === "user" ? "active" : ""}
-                  >
-                    <FaRegUser />
+                  <Link to="/user">
+                    <FaRegUser
+                      style={{
+                        color: splitLocation[1] === "user" ? "#fff" : "#67686a",
+                      }}
+                    />
                   </Link>
                 </li>
                 <li>

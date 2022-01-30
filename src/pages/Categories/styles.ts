@@ -6,7 +6,10 @@ export const Container = styled.div`
 
   .allHouses {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
   }
 `;

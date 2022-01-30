@@ -1,6 +1,7 @@
 import { useSelectorApp } from "../../redux/hooks/userSelectorApp";
 import { useDispatch } from "react-redux";
 import { removeItemFromCart } from "../../redux/reducers/cartReducer";
+import { motion } from "framer-motion";
 import * as C from "./styles";
 
 export const Cart = () => {
@@ -24,7 +25,13 @@ export const Cart = () => {
         <h2>Cart zero</h2>
       ) : (
         <>
-          <div className="cart">
+          <motion.div
+            className="cart"
+            exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+          >
             {cart.map((item, k) => (
               <div className="cartInfo" key={k}>
                 <img src={item.images} />
@@ -42,8 +49,14 @@ export const Cart = () => {
                 <button onClick={() => handleDelete(item.id)}>Remove</button>
               </div>
             ))}
-          </div>
-          <div className="checkCart">
+          </motion.div>
+          <motion.div
+            className="checkCart"
+            exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+          >
             <div>
               <h2>Total Cost:</h2>
               <strong>{totalMascara}</strong>
@@ -54,7 +67,7 @@ export const Cart = () => {
             <br />
             <span>Email</span>
             <h3>{user.email}</h3>
-          </div>
+          </motion.div>
         </>
       )}
     </C.Container>

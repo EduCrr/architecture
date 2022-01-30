@@ -10,14 +10,16 @@ import { motion } from "framer-motion";
 export const SliderIntro = () => {
   const [images, setImages] = useState<houseTypes[]>([]);
   const [loading, setLoading] = useState(false);
+
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
     arrows: false,
-    slidesToScroll: 3,
+    slidesToScroll: 1,
   };
+
   useEffect(() => {
     const getAllHouse = async () => {
       setLoading(true);
