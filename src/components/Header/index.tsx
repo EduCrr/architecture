@@ -1,24 +1,38 @@
 import { Link } from "react-router-dom";
 import * as C from "./styles";
-import { FaOpencart, FaRegUser, FaArrowRight } from "react-icons/fa";
+import {
+  FaOpencart,
+  FaRegUser,
+  FaArrowRight,
+  FaAlignJustify,
+} from "react-icons/fa";
 import { useSelectorApp } from "../../redux/hooks/userSelectorApp";
 import { useDispatch } from "react-redux";
 import { setLogOut } from "../../redux/reducers/userReducer";
 import { useLocation } from "react-router-dom";
+import { useState } from "react";
 export const Header = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const splitLocation = location.pathname.split("/");
   const user = useSelectorApp((state) => state.user);
+  const [openMenu, setOpenMenu] = useState(false);
   const handleLogout = () => {
     dispatch(setLogOut());
   };
+  const handleMenu = () => {
+    setOpenMenu(true);
+  };
   return (
     <>
-      <C.Container>
-        <div className="logo">Architecture</div>
+      <C.Container menu={openMenu}>
+        <div className="logo">
+          <Link to="/" style={{ color: "white" }}>
+            Architecture
+          </Link>
+        </div>
         <nav>
-          <ul>
+          <ul onClick={() => setOpenMenu(false)}>
             <li>
               <Link className={splitLocation[1] === "" ? "active" : ""} to="/">
                 Home
@@ -32,6 +46,7 @@ export const Header = () => {
                 Categories
               </Link>
             </li>
+
             {user.uid === "" && (
               <li>
                 <Link
@@ -42,6 +57,7 @@ export const Header = () => {
                 </Link>
               </li>
             )}
+
             {user.uid !== "" && (
               <>
                 <li>
@@ -72,6 +88,9 @@ export const Header = () => {
             )}
           </ul>
         </nav>
+        <div className="menu">
+          <FaAlignJustify style={{ cursor: "pointer" }} onClick={handleMenu} />
+        </div>
       </C.Container>
       <div
         style={{

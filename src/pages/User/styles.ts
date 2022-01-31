@@ -12,4 +12,13 @@ export const Container = styled.div`
       flex-direction: column;
     }
   }
+  @media (max-width: 1024px) {
+    padding: 0px 10px;
+  }
+  @media (max-width: 768px) {
+    .user-info {
+      text-align: center;
+      margin: auto;
+    }
+  }
 `;

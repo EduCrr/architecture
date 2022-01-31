@@ -5,6 +5,7 @@ export const Container = styled.div`
   margin: 1rem auto;
   display: flex;
   justify-content: space-between;
+  min-height: 100vh;
   .left-side {
     height: 85vh;
     width: 400px;
@@ -54,6 +55,40 @@ export const Container = styled.div`
     .slick-dots {
       width: 100% !important;
       display: flex;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 0vh !important;
+    .left-side {
+      width: 100%;
+      height: 100vh;
+      padding: 0px 10px;
+      margin-bottom: 20px;
+    }
+    .right-side {
+      height: 100vh !important;
+      width: 100%;
+      position: relative !important;
+      img {
+        height: 400px;
+      }
+      .slick-dots li button:before {
+        margin-top: -60px !important;
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    .right-side {
+    }
+  }
+  @media (max-width: 365px) {
+    .left-side {
+      .info {
+        flex-direction: column;
+      }
     }
   }
 `;

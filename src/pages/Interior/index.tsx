@@ -1,23 +1,24 @@
 import { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getSingle } from "../../services/houses";
 import * as C from "./styles";
 import Slider from "react-slick";
 import { useDispatch } from "react-redux";
-import { useSelectorApp } from "../../redux/hooks/userSelectorApp";
 import { addItemToCart } from "../../redux/reducers/cartReducer";
 import { motion } from "framer-motion";
+import { houseTypes } from "../../types/houseType";
 export const Interiro = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [house, setHouse] = useState<any>({});
-  const cart = useSelectorApp((state) => state.cart);
   const dispatch = useDispatch();
+
   useEffect(() => {
     const loadHouse = async (id: any) => {
       setHouse(await getSingle(id));
     };
     loadHouse(id);
+    window.scrollTo(0, 0);
   }, [id]);
 
   const settings = {
@@ -78,7 +79,13 @@ export const Interiro = () => {
           </div>
           <div className="item" style={{ width: "150px" }}>
             <span>Full Price</span>
-            <h3> $ {house.price}</h3>
+            <h3>
+              {house.price &&
+                house.price.toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                })}
+            </h3>
           </div>
         </div>
         <div className="item">

@@ -16,7 +16,7 @@ export const Container = styled.div`
     margin-bottom: 45px;
     img {
       height: 250px;
-      width: inherit;
+      width: 350px;
       object-fit: cover;
       margin-bottom: 15px;
     }
@@ -43,6 +43,30 @@ export const Container = styled.div`
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+  }
+  @media (max-width: 1024px) {
+    padding: 0px 10px;
+  }
+  @media (max-width: 850px) {
+    flex-direction: column;
+    .checkCart {
+      position: relative !important ;
+      width: 100%;
+      margin: auto;
+      justify-content: center;
+      align-items: center;
+      right: 0;
+    }
+    .cart,
+    .checkCart {
+      margin: auto;
+      width: 100%;
+    }
+  }
+  @media (max-width: 375px) {
+    .checkCart {
+      flex-direction: columns;
     }
   }
 `;

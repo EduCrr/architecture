@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import * as C from "./styles";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -7,10 +7,11 @@ import { houseTypes } from "../../types/houseType";
 import { getAll } from "../../services/houses";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { FaLongArrowAltRight, FaLongArrowAltLeft } from "react-icons/fa";
 export const SliderIntro = () => {
   const [images, setImages] = useState<houseTypes[]>([]);
   const [loading, setLoading] = useState(false);
-
+  const sliderRef: any = useRef();
   const settings = {
     dots: false,
     infinite: true,
@@ -18,6 +19,23 @@ export const SliderIntro = () => {
     slidesToShow: 3,
     arrows: false,
     slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 2,
+        },
+      },
+    ],
+  };
+
+  const gotoNext = () => {
+    sliderRef.current.slickNext();
+  };
+  const gotoPrev = () => {
+    sliderRef.current.slickPrev();
   };
 
   useEffect(() => {
@@ -29,6 +47,7 @@ export const SliderIntro = () => {
     };
     getAllHouse();
   }, []);
+
   return (
     <>
       {loading && (
@@ -54,7 +73,7 @@ export const SliderIntro = () => {
           animate={{ opacity: 1, y: "0" }}
           transition={{ duration: 0.8 }}
         >
-          <Slider {...settings}>
+          <Slider {...settings} ref={sliderRef}>
             {images.map((item, k) => (
               <div className="image-slider" key={k}>
                 <Link to={`/interior/${item.id}`}>
@@ -63,6 +82,14 @@ export const SliderIntro = () => {
               </div>
             ))}
           </Slider>
+          <div className="arrows">
+            <div onClick={gotoPrev}>
+              <FaLongArrowAltLeft />
+            </div>
+            <div onClick={gotoNext}>
+              <FaLongArrowAltRight />
+            </div>
+          </div>
         </motion.div>
       </C.Container>
     </>

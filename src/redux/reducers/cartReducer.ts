@@ -9,7 +9,7 @@ export const Slice = createSlice({
       let id = action.payload.id;
       let indexProduct = state.findIndex((item) => item.id === id);
       if (indexProduct > -1) {
-        alert("já add");
+        console.log("Product Add");
       } else {
         state.push(action.payload);
       }

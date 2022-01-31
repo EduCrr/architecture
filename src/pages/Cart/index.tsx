@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { removeItemFromCart } from "../../redux/reducers/cartReducer";
 import { motion } from "framer-motion";
 import * as C from "./styles";
+import { Link } from "react-router-dom";
 
 export const Cart = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,9 @@ export const Cart = () => {
           >
             {cart.map((item, k) => (
               <div className="cartInfo" key={k}>
-                <img src={item.images} />
+                <Link to={`/interior/${item.id}`}>
+                  <img src={item.images} />
+                </Link>
                 <span>{item.company}</span>
                 <div className="info">
                   <h4>{item.name}</h4>

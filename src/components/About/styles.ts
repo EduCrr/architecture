@@ -60,7 +60,9 @@ export const Gallery = styled.div`
     grid-row-end: 5;
     grid-column-end: 6;
   }
-
+  @media (max-width: 1024px) {
+    padding: 0px 10px;
+  }
   @media (max-width: 770px) {
     display: flex;
     flex-direction: column;

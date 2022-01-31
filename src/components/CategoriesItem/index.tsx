@@ -16,7 +16,7 @@ export const CategoriesItem = ({ data }: Props) => {
         <div className="middle">
           <span>{data.company}</span>
           <br />
-          <Link to="/houses">{data.name}</Link>
+          <Link to={`/interior/${data.id}`}>{data.name}</Link>
         </div>
       </div>
     </C.Container>
