@@ -30,6 +30,11 @@ export const Categories = () => {
 
   return (
     <C.Container>
+      {loading && (
+        <div className="loading">
+          <img src="/assets/loading.gif" />
+        </div>
+      )}
       <motion.div
         exit={{ opacity: 0 }}
         initial={{ opacity: 0 }}

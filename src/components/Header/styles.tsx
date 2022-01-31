@@ -64,6 +64,7 @@ export const Container = styled.div<{ menu: boolean }>`
   }
   @media (max-width: 600px) {
     ul {
-      width: ${(props) => (props.menu ? "100%" : "0%")}; 
+      width: ${(props) => (props.menu ? "100%" : "0%")};
+    }
   }
 `;

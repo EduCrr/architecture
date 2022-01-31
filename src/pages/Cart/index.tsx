@@ -23,7 +23,7 @@ export const Cart = () => {
   return (
     <C.Container>
       {cart.length == 0 ? (
-        <h2>Cart zero</h2>
+        <h2>Empty cart</h2>
       ) : (
         <>
           <motion.div

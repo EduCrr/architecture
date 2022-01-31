@@ -52,7 +52,7 @@ export const SliderIntro = () => {
     <>
       {loading && (
         <div className="loading">
-          <img src="" />
+          <img src="/assets/loading.gif" />
         </div>
       )}
       <C.Container>

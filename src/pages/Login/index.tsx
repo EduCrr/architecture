@@ -18,17 +18,22 @@ export const Login = () => {
   const [isLogin, setIsLogin] = useState("");
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
+
+  const [loading, setLoading] = useState(false);
   const [userId, setUserId] = useState("");
   const user = useSelectorApp((state) => state.user);
 
   const handleSendForm = async (e: React.FormEvent) => {
     e.preventDefault();
     if (isLogin === "login") {
+      setLoading(true);
       await sendLogin(email, password, setUserName, setUserEmail, setUserId);
       dispatch(setNameUsuario(userName));
       dispatch(setEmailUsuario(userEmail));
       dispatch(setUid(userId));
+      setLoading(false);
     } else if (isLogin === "cadastro") {
+      setLoading(true);
       await sendNewAccount(
         email,
         password,
@@ -40,11 +45,13 @@ export const Login = () => {
       dispatch(setNameUsuario(userName));
       dispatch(setEmailUsuario(userEmail));
       dispatch(setUid(userId));
+      setLoading(false);
     }
   };
 
   const handleIsLogin = (e: ChangeEvent<HTMLSelectElement>) => {
     setIsLogin(e.target.value);
+    console.log(isLogin);
   };
   if (user.uid !== "") {
     return <Navigate to="/" />;
@@ -71,9 +78,9 @@ export const Login = () => {
         className="right-side"
       >
         <select onChange={handleIsLogin} value={isLogin}>
-          <option value="">Select your choice</option>
+          <option>Select your choice</option>
           <option value="login">Login</option>
-          <option value="cadastro">Cadastro</option>
+          <option value="cadastro">Register</option>
         </select>
         {isLogin !== "" && (
           <>
@@ -102,7 +109,7 @@ export const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <button type="submit">Send</button>
+              <button type="submit">{loading ? "Loading..." : "Send"}</button>
             </form>
           </>
         )}
