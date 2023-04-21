@@ -1,7 +1,7 @@
 
 <div align="center">
   <h2>Versão 1.0.0</h2>
-  http://eduhouse.rf.gd/](https://architecture-rust.vercel.app
+ https://architecture-rust.vercel.app
 </div>
 <br/>
 <div align="center">
